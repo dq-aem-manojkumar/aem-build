@@ -1,0 +1,263 @@
+/* Custom CSS for AEM Builder */
+
+:root {
+    --primary-color: #0d6efd;
+    --secondary-color: #6c757d;
+    --success-color: #198754;
+    --warning-color: #ffc107;
+    --danger-color: #dc3545;
+    --info-color: #0dcaf0;
+    --light-color: #f8f9fa;
+    --dark-color: #212529;
+    --sidebar-width: 280px;
+}
+
+/* Layout */
+.sidebar-container {
+    width: var(--sidebar-width);
+    min-height: calc(100vh - 56px);
+}
+
+.sidebar {
+    width: var(--sidebar-width);
+    min-height: calc(100vh - 56px);
+    position: fixed;
+    top: 56px;
+    left: 0;
+    z-index: 1000;
+    overflow-y: auto;
+}
+
+.main-content {
+    margin-left: var(--sidebar-width);
+    min-height: calc(100vh - 56px);
+}
+
+/* Sidebar Styles */
+.sidebar-header {
+    background-color: var(--light-color);
+}
+
+.project-link {
+    transition: all 0.3s ease;
+    border-left: 3px solid transparent;
+}
+
+.project-link:hover {
+    background-color: var(--light-color);
+    border-left-color: var(--primary-color);
+    transform: translateX(2px);
+}
+
+.project-item:last-child .project-link {
+    border-bottom: none;
+}
+
+/* Hero Section */
+.hero-section {
+    background: linear-gradient(135deg, var(--primary-color) 0%, #0056b3 100%);
+}
+
+/* Component Cards */
+.component-card {
+    transition: transform 0.2s ease;
+}
+
+.component-card:hover {
+    transform: translateY(-2px);
+}
+
+.component-label {
+    transition: all 0.3s ease;
+    border: 2px solid #dee2e6;
+    height: 120px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.component-label:hover {
+    border-color: var(--primary-color);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.btn-check:checked + .component-label {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+    color: white;
+    transform: scale(1.02);
+}
+
+.component-label.disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+/* Project Cards */
+.project-card {
+    transition: all 0.3s ease;
+    border: 1px solid #e9ecef;
+}
+
+.project-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+    border-color: var(--primary-color);
+}
+
+/* File Upload Area */
+.file-upload-area {
+    transition: all 0.3s ease;
+    cursor: pointer;
+    background-color: #fafafa;
+}
+
+.file-upload-area:hover {
+    background-color: #f0f0f0;
+    border-color: var(--primary-color);
+}
+
+.file-upload-area.border-primary {
+    border-color: var(--primary-color) !important;
+}
+
+/* Component Items */
+.component-item {
+    transition: all 0.3s ease;
+    background-color: #fafafa;
+}
+
+.component-item:hover {
+    background-color: var(--light-color);
+    border-color: var(--primary-color) !important;
+    transform: translateY(-2px);
+}
+
+/* Toast Notifications */
+.toast {
+    min-width: 300px;
+}
+
+/* Badges */
+.badge {
+    font-size: 0.75em;
+    padding: 0.5em 0.75em;
+}
+
+/* Buttons */
+.btn {
+    transition: all 0.3s ease;
+}
+
+.btn:hover {
+    transform: translateY(-1px);
+}
+
+.btn-primary {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+}
+
+.btn-primary:hover {
+    background-color: #0056b3;
+    border-color: #0056b3;
+}
+
+/* Cards */
+.card {
+    transition: all 0.3s ease;
+}
+
+.card:hover {
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Navbar */
+.navbar-brand {
+    font-size: 1.5rem;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .sidebar-container {
+        width: 0;
+    }
+    
+    .sidebar {
+        transform: translateX(-100%);
+        transition: transform 0.3s ease;
+    }
+    
+    .main-content {
+        margin-left: 0;
+    }
+    
+    .sidebar.show {
+        transform: translateX(0);
+    }
+}
+
+/* Loading States */
+.spinner-border {
+    width: 3rem;
+    height: 3rem;
+}
+
+/* Form Enhancements */
+.form-control:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 0.2rem rgba(13, 110, 253, 0.25);
+}
+
+.form-check-input:checked {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.fade-in {
+    animation: fadeIn 0.5s ease-out;
+}
+
+/* Utility Classes */
+.text-gradient {
+    background: linear-gradient(135deg, var(--primary-color), #0056b3);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.shadow-hover {
+    transition: box-shadow 0.3s ease;
+}
+
+.shadow-hover:hover {
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+    .bg-light {
+        background-color: #343a40 !important;
+    }
+    
+    .text-muted {
+        color: #adb5bd !important;
+    }
+    
+    .border {
+        border-color: #495057 !important;
+    }
+}

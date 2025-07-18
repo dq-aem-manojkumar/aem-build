@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>AEM Builder - Home</title>
+</head>
+<body>
+    <div th:replace="~{fragments/layout :: layout(~{::main-content})}">
+        <div th:fragment="main-content" class="container-fluid p-4">
+            <!-- Hero Section -->
+            <div class="row mb-5">
+                <div class="col-12">
+                    <div class="hero-section text-center py-5 bg-gradient rounded-3 text-white">
+                        <div class="container">
+                            <i class="fas fa-cube fa-4x mb-3"></i>
+                            <h1 class="display-4 fw-bold mb-3">Welcome to AEM Builder</h1>
+                            <p class="lead mb-4">Create, manage, and customize Adobe Experience Manager projects with ease</p>
+                            <div class="d-flex gap-3 justify-content-center flex-wrap">
+                                <a href="/project/create" class="btn btn-light btn-lg">
+                                    <i class="fas fa-plus-circle me-2"></i>Create New Project
+                                </a>
+                                <a href="/project/import" class="btn btn-outline-light btn-lg">
+                                    <i class="fas fa-upload me-2"></i>Import Project
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Statistics Cards -->
+            <div class="row mb-5">
+                <div class="col-md-4">
+                    <div class="card border-0 shadow-sm h-100">
+                        <div class="card-body text-center">
+                            <i class="fas fa-folder-open fa-3x text-primary mb-3"></i>
+                            <h3 class="card-title" th:text="${#lists.size(projects)}">0</h3>
+                            <p class="card-text text-muted">Total Projects</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card border-0 shadow-sm h-100">
+                        <div class="card-body text-center">
+                            <i class="fas fa-puzzle-piece fa-3x text-success mb-3"></i>
+                            <h3 class="card-title" th:text="${#lists.size(components)}">0</h3>
+                            <p class="card-text text-muted">Available Components</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card border-0 shadow-sm h-100">
+                        <div class="card-body text-center">
+                            <i class="fas fa-rocket fa-3x text-warning mb-3"></i>
+                            <h3 class="card-title">Ready</h3>
+                            <p class="card-text text-muted">To Build</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Recent Projects -->
+            <div class="row" th:if="${!projects.empty}">
+                <div class="col-12">
+                    <h2 class="mb-4">
+                        <i class="fas fa-clock me-2"></i>Recent Projects
+                    </h2>
+                    <div class="row">
+                        <div th:each="project, iterStat : ${projects}" 
+                             th:if="${iterStat.index < 6}" 
+                             class="col-lg-4 col-md-6 mb-4">
+                            <div class="card border-0 shadow-sm h-100 project-card">
+                                <div class="card-body">
+                                    <div class="d-flex justify-content-between align-items-start mb-3">
+                                        <h5 class="card-title mb-0" th:text="${project.name}">Project Name</h5>
+                                        <span class="badge bg-primary" th:text="${project.version}">v1.0</span>
+                                    </div>
+                                    <p class="card-text text-muted mb-3">
+                                        <i class="fas fa-puzzle-piece me-1"></i>
+                                        <span th:if="${project.components}" 
+                                              th:text="${#lists.size(project.components)} + ' components'">0 components</span>
+                                    </p>
+                                    <div class="d-flex gap-2">
+                                        <a th:href="@{'/project/details/' + ${project.name}}" 
+                                           class="btn btn-outline-primary btn-sm flex-grow-1">
+                                            <i class="fas fa-eye me-1"></i>View Details
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Getting Started -->
+            <div class="row" th:if="${projects.empty}">
+                <div class="col-12">
+                    <div class="card border-0 shadow-sm">
+                        <div class="card-body text-center py-5">
+                            <i class="fas fa-lightbulb fa-4x text-warning mb-4"></i>
+                            <h3 class="mb-3">Get Started with AEM Builder</h3>
+                            <p class="text-muted mb-4">Create your first AEM project or import an existing one to begin</p>
+                            <div class="d-flex gap-3 justify-content-center flex-wrap">
+                                <a href="/project/create" class="btn btn-primary">
+                                    <i class="fas fa-plus-circle me-2"></i>Create Your First Project
+                                </a>
+                                <a href="/project/import" class="btn btn-outline-secondary">
+                                    <i class="fas fa-upload me-2"></i>Import Existing Project
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

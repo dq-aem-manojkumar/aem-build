@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+</head>
+<body>
+    <div th:fragment="sidebar" class="sidebar bg-light border-end">
+        <div class="sidebar-header p-3 border-bottom">
+            <h5 class="mb-0">
+                <i class="fas fa-folder me-2"></i>Existing Projects
+            </h5>
+        </div>
+        
+        <div class="sidebar-content">
+            <div th:if="${projects.empty}" class="p-3 text-muted text-center">
+                <i class="fas fa-folder-open fa-2x mb-2 d-block"></i>
+                No projects yet
+            </div>
+            
+            <div th:each="project : ${projects}" class="project-item">
+                <a th:href="@{'/project/details/' + ${project.name}}" 
+                   class="d-block p-3 text-decoration-none border-bottom project-link">
+                    <div class="d-flex justify-content-between align-items-start">
+                        <div class="flex-grow-1">
+                            <h6 class="mb-1 text-dark" th:text="${project.name}">Project Name</h6>
+                            <small class="text-muted">
+                                <span th:if="${project.components}" 
+                                      th:text="${#lists.size(project.components)} + ' components'">0 components</span>
+                            </small>
+                        </div>
+                        <span class="badge bg-secondary" th:text="${project.version}">v1.0</span>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Import Project - AEM Builder</title>
+</head>
+<body>
+    <div th:replace="~{fragments/layout :: layout(~{::main-content})}">
+        <div th:fragment="main-content" class="container-fluid p-4">
+            <div class="row">
+                <div class="col-lg-8 mx-auto">
+                    <!-- Page Header -->
+                    <div class="d-flex align-items-center mb-4">
+                        <i class="fas fa-upload fa-2x text-primary me-3"></i>
+                        <div>
+                            <h1 class="mb-0">Import Project</h1>
+                            <p class="text-muted mb-0">Upload an existing AEM project (.zip or .jar file)</p>
+                        </div>
+                    </div>
+
+                    <!-- Import Form -->
+                    <div class="card border-0 shadow-sm">
+                        <div class="card-body p-4">
+                            <form th:action="@{/project/import}" method="post" enctype="multipart/form-data" id="importForm">
+                                <div class="row">
+                                    <div class="col-12 mb-4">
+                                        <label for="file" class="form-label">Select Project File *</label>
+                                        <div class="file-upload-area border-2 border-dashed rounded-3 p-5 text-center">
+                                            <input type="file" class="form-control d-none" id="file" name="file" 
+                                                   accept=".zip,.jar" required>
+                                            <div class="file-upload-content">
+                                                <i class="fas fa-cloud-upload-alt fa-4x text-muted mb-3"></i>
+                                                <h5 class="mb-2">Drop your file here or click to browse</h5>
+                                                <p class="text-muted mb-3">Supported formats: .zip, .jar (Max size: 50MB)</p>
+                                                <button type="button" class="btn btn-outline-primary" onclick="document.getElementById('file').click()">
+                                                    <i class="fas fa-folder-open me-2"></i>Choose File
+                                                </button>
+                                            </div>
+                                            <div class="file-selected d-none">
+                                                <i class="fas fa-file-archive fa-3x text-success mb-3"></i>
+                                                <h6 class="mb-2">File Selected:</h6>
+                                                <p class="file-name text-primary mb-3"></p>
+                                                <button type="button" class="btn btn-outline-secondary btn-sm" onclick="clearFile()">
+                                                    <i class="fas fa-times me-1"></i>Remove
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="col-12">
+                                        <div class="alert alert-info">
+                                            <i class="fas fa-info-circle me-2"></i>
+                                            <strong>Import Guidelines:</strong>
+                                            <ul class="mb-0 mt-2">
+                                                <li>Ensure your project file is a valid AEM project archive</li>
+                                                <li>The imported project will be extracted and made available for editing</li>
+                                                <li>You can add additional components after import</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-12">
+                                        <div class="d-flex gap-3 justify-content-end">
+                                            <a href="/" class="btn btn-outline-secondary">
+                                                <i class="fas fa-times me-2"></i>Cancel
+                                            </a>
+                                            <button type="submit" class="btn btn-primary" id="importBtn" disabled>
+                                                <i class="fas fa-upload me-2"></i>Import Project
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+                    <!-- Progress Modal -->
+                    <div class="modal fade" id="importProgressModal" tabindex="-1" data-bs-backdrop="static">
+                        <div class="modal-dialog modal-dialog-centered">
+                            <div class="modal-content">
+                                <div class="modal-body text-center py-4">
+                                    <div class="spinner-border text-primary mb-3" role="status">
+                                        <span class="visually-hidden">Loading...</span>
+                                    </div>
+                                    <h5>Importing Project...</h5>
+                                    <p class="text-muted mb-0">Please wait while we process your project file</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const fileInput = document.getElementById('file');
+        const uploadArea = document.querySelector('.file-upload-area');
+        const uploadContent = document.querySelector('.file-upload-content');
+        const fileSelected = document.querySelector('.file-selected');
+        const fileName = document.querySelector('.file-name');
+        const importBtn = document.getElementById('importBtn');
+
+        // File input change handler
+        fileInput.addEventListener('change', function() {
+            if (this.files.length > 0) {
+                showSelectedFile(this.files[0]);
+            }
+        });
+
+        // Drag and drop handlers
+        uploadArea.addEventListener('dragover', function(e) {
+            e.preventDefault();
+            this.classList.add('border-primary', 'bg-light');
+        });
+
+        uploadArea.addEventListener('dragleave', function(e) {
+            e.preventDefault();
+            this.classList.remove('border-primary', 'bg-light');
+        });
+
+        uploadArea.addEventListener('drop', function(e) {
+            e.preventDefault();
+            this.classList.remove('border-primary', 'bg-light');
+            
+            const files = e.dataTransfer.files;
+            if (files.length > 0) {
+                const file = files[0];
+                if (file.name.endsWith('.zip') || file.name.endsWith('.jar')) {
+                    fileInput.files = files;
+                    showSelectedFile(file);
+                } else {
+                    alert('Please select a .zip or .jar file');
+                }
+            }
+        });
+
+        function showSelectedFile(file) {
+            fileName.textContent = file.name;
+            uploadContent.classList.add('d-none');
+            fileSelected.classList.remove('d-none');
+            importBtn.disabled = false;
+        }
+
+        function clearFile() {
+            fileInput.value = '';
+            uploadContent.classList.remove('d-none');
+            fileSelected.classList.add('d-none');
+            importBtn.disabled = true;
+        }
+
+        // Form submission handler
+        document.getElementById('importForm').addEventListener('submit', function() {
+            const modal = new bootstrap.Modal(document.getElementById('importProgressModal'));
+            modal.show();
+        });
+    </script>
+</body>
+</html>
