@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="~{layout :: layout}">
+<body>
+    <div th:fragment="content" class="content-area">
+        <div class="page-header">
+            <h2>Projects</h2>
+            <p>Manage your AEM projects and track their progress</p>
+        </div>
+        
+        <div class="projects-content">
+            <div class="projects-toolbar">
+                <div class="search-box">
+                    <i class="fas fa-search"></i>
+                    <input type="text" placeholder="Search projects...">
+                </div>
+                <div class="filter-controls">
+                    <select class="form-control">
+                        <option>All Status</option>
+                        <option>Active</option>
+                        <option>Development</option>
+                        <option>Completed</option>
+                    </select>
+                </div>
+            </div>
+            
+            <div class="projects-list">
+                <div class="project-item">
+                    <div class="project-info">
+                        <h3>E-commerce Platform</h3>
+                        <p>Advanced AEM implementation with custom components</p>
+                        <div class="project-tags">
+                            <span class="tag">AEM 6.5</span>
+                            <span class="tag">React</span>
+                            <span class="tag">Commerce</span>
+                        </div>
+                    </div>
+                    <div class="project-actions">
+                        <button class="btn btn-sm btn-outline">View</button>
+                        <button class="btn btn-sm btn-primary">Edit</button>
+                    </div>
+                </div>
+                
+                <div class="project-item">
+                    <div class="project-info">
+                        <h3>Corporate Website</h3>
+                        <p>Multi-site corporate presence with DAM integration</p>
+                        <div class="project-tags">
+                            <span class="tag">AEM Cloud</span>
+                            <span class="tag">Multi-site</span>
+                            <span class="tag">DAM</span>
+                        </div>
+                    </div>
+                    <div class="project-actions">
+                        <button class="btn btn-sm btn-outline">View</button>
+                        <button class="btn btn-sm btn-primary">Edit</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

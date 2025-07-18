@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="~{layout :: layout}">
+<body>
+    <div th:fragment="content" class="content-area">
+        <div class="page-header">
+            <h2>Templates</h2>
+            <p>Browse and manage AEM page templates</p>
+        </div>
+        
+        <div class="templates-grid">
+            <div class="template-card">
+                <div class="template-preview">
+                    <i class="fas fa-file-alt"></i>
+                </div>
+                <div class="template-info">
+                    <h3>Basic Page</h3>
+                    <p>Standard page template with header, content, and footer</p>
+                    <button class="btn btn-sm btn-primary">Use Template</button>
+                </div>
+            </div>
+            
+            <div class="template-card">
+                <div class="template-preview">
+                    <i class="fas fa-shopping-cart"></i>
+                </div>
+                <div class="template-info">
+                    <h3>Product Page</h3>
+                    <p>E-commerce product page with gallery and details</p>
+                    <button class="btn btn-sm btn-primary">Use Template</button>
+                </div>
+            </div>
+            
+            <div class="template-card">
+                <div class="template-preview">
+                    <i class="fas fa-newspaper"></i>
+                </div>
+                <div class="template-info">
+                    <h3>Article Page</h3>
+                    <p>Blog article template with rich content support</p>
+                    <button class="btn btn-sm btn-primary">Use Template</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

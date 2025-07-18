@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="~{layout :: layout}">
+<body>
+    <div th:fragment="content" class="content-area">
+        <!-- Quick Stats -->
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-icon">
+                    <i class="fas fa-folder text-blue"></i>
+                </div>
+                <div class="stat-content">
+                    <h3>12</h3>
+                    <p>Active Projects</p>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon">
+                    <i class="fas fa-file-code text-green"></i>
+                </div>
+                <div class="stat-content">
+                    <h3>24</h3>
+                    <p>Templates</p>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon">
+                    <i class="fas fa-puzzle-piece text-purple"></i>
+                </div>
+                <div class="stat-content">
+                    <h3>48</h3>
+                    <p>Components</p>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon">
+                    <i class="fas fa-rocket text-orange"></i>
+                </div>
+                <div class="stat-content">
+                    <h3>6</h3>
+                    <p>Deployments</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Project Generator -->
+        <div class="generator-section">
+            <div class="generator-card">
+                <div class="generator-header">
+                    <h2>Generate AEM Project</h2>
+                    <p>Bootstrap your AEM project with the latest archetype and best practices</p>
+                </div>
+                
+                <form class="generator-form">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="projectType">Project Type</label>
+                            <select id="projectType" class="form-control">
+                                <option value="aem-project">AEM Project Archetype</option>
+                                <option value="aem-spa">AEM SPA Project</option>
+                                <option value="aem-headless">AEM Headless</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="aemVersion">AEM Version</label>
+                            <select id="aemVersion" class="form-control">
+                                <option value="6.5">AEM 6.5</option>
+                                <option value="cloud">AEM as a Cloud Service</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="groupId">Group ID</label>
+                            <input type="text" id="groupId" class="form-control" value="com.example" placeholder="com.example">
+                        </div>
+                        <div class="form-group">
+                            <label for="artifactId">Artifact ID</label>
+                            <input type="text" id="artifactId" class="form-control" placeholder="my-aem-project">
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="version">Version</label>
+                            <input type="text" id="version" class="form-control" value="1.0.0-SNAPSHOT">
+                        </div>
+                        <div class="form-group">
+                            <label for="packageName">Package Name</label>
+                            <input type="text" id="packageName" class="form-control" placeholder="com.example.myproject">
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="appTitle">Application Title</label>
+                        <input type="text" id="appTitle" class="form-control" placeholder="My AEM Application">
+                    </div>
+                    
+                    <div class="form-actions">
+                        <button type="button" class="btn btn-secondary">Preview</button>
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-download"></i>
+                            Generate Project
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- Recent Projects -->
+        <div class="recent-section">
+            <h2>Recent Projects</h2>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <div class="project-header">
+                        <h3>E-commerce Site</h3>
+                        <span class="project-status active">Active</span>
+                    </div>
+                    <p>AEM 6.5 project with React SPA integration</p>
+                    <div class="project-meta">
+                        <span><i class="fas fa-calendar"></i> 2 days ago</span>
+                        <span><i class="fas fa-code-branch"></i> v1.2.0</span>
+                    </div>
+                </div>
+                
+                <div class="project-card">
+                    <div class="project-header">
+                        <h3>Corporate Website</h3>
+                        <span class="project-status development">Development</span>
+                    </div>
+                    <p>Multi-site AEM Cloud Service implementation</p>
+                    <div class="project-meta">
+                        <span><i class="fas fa-calendar"></i> 1 week ago</span>
+                        <span><i class="fas fa-code-branch"></i> v0.8.0</span>
+                    </div>
+                </div>
+                
+                <div class="project-card">
+                    <div class="project-header">
+                        <h3>Blog Platform</h3>
+                        <span class="project-status completed">Completed</span>
+                    </div>
+                    <p>Headless AEM with Next.js frontend</p>
+                    <div class="project-meta">
+                        <span><i class="fas fa-calendar"></i> 2 weeks ago</span>
+                        <span><i class="fas fa-code-branch"></i> v2.1.0</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

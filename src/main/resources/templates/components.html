@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="~{layout :: layout}">
+<body>
+    <div th:fragment="content" class="content-area">
+        <div class="page-header">
+            <h2>Components</h2>
+            <p>Reusable AEM components for your projects</p>
+        </div>
+        
+        <div class="components-categories">
+            <div class="category-section">
+                <h3>Layout Components</h3>
+                <div class="components-grid">
+                    <div class="component-card">
+                        <div class="component-icon">
+                            <i class="fas fa-columns"></i>
+                        </div>
+                        <h4>Container</h4>
+                        <p>Responsive layout container</p>
+                    </div>
+                    <div class="component-card">
+                        <div class="component-icon">
+                            <i class="fas fa-th-large"></i>
+                        </div>
+                        <h4>Grid</h4>
+                        <p>Flexible grid system</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="category-section">
+                <h3>Content Components</h3>
+                <div class="components-grid">
+                    <div class="component-card">
+                        <div class="component-icon">
+                            <i class="fas fa-font"></i>
+                        </div>
+                        <h4>Text</h4>
+                        <p>Rich text editor component</p>
+                    </div>
+                    <div class="component-card">
+                        <div class="component-icon">
+                            <i class="fas fa-image"></i>
+                        </div>
+                        <h4>Image</h4>
+                        <p>Responsive image component</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
